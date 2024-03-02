@@ -22,6 +22,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public List<Student> findStudentsByGroup(String name){
+        return studentRepository.findStudentsByGroup(name);
+    }
+
     public Student getStudentById(Long id){
         Optional<Student> optional = studentRepository.findById(id);
         Student student;
@@ -30,10 +34,6 @@ public class StudentService {
         else
             throw new RuntimeException("Student not found for id :: " + id);
         return student;
-    }
-
-    public void updateStudentById(Long id, Student newStudent){
-
     }
 
     public void deleteStudentById(Long id){

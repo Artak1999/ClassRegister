@@ -16,9 +16,9 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ElementCollection
-    private List<Integer> present;
+    private List<String> present;
     @ElementCollection
-    private List<Integer> absent;
+    private List<String> absent;
     @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
 }
