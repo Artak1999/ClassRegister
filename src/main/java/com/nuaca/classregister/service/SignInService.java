@@ -1,6 +1,7 @@
 package com.nuaca.classregister.service;
 
 import com.nuaca.classregister.model.Professor;
+import com.nuaca.classregister.model.SignIn;
 import com.nuaca.classregister.repository.SignInRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,9 @@ public class SignInService {
 
     public Optional<Professor> findProfessor(String login, String password){
         return signInRepository.findProfessorByLogin(login,password);
+    }
+
+    public Optional<SignIn> findAdmin(String login, String password){
+        return signInRepository.findAdminByLogin(login,password);
     }
 }

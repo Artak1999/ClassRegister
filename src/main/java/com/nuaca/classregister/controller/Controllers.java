@@ -26,6 +26,7 @@ public class Controllers {
     @Autowired
     private AttendanceService attendanceService;
     Optional<Professor> professor;
+    Optional<SignIn> admin;
     String groupName;
 
     @GetMapping("/")
@@ -36,12 +37,19 @@ public class Controllers {
 
     @PostMapping("/group")
     public String afterLogin(@ModelAttribute("signIn") SignIn signIn, Model model){
+        String direction;
+        admin = signInService.findAdmin(signIn.getLogin(), signIn.getPassword());
         professor = signInService.findProfessor(signIn.getLogin(), signIn.getPassword());
         if(professor.isPresent()) {
             model.addAttribute("groups", studentGroupService.findGroup(professor.get().getEmail()));
-            return "group";
+            direction =  "group";
         }
-        return "redirect:/?loginError";
+        else if(admin.isPresent()){
+            direction = "admin";
+        }
+        else
+            direction = "redirect:/?loginError";
+        return direction;
     }
 
     @GetMapping("/group")

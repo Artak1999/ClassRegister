@@ -15,8 +15,9 @@ public class SignIn {
     private Long id;
     private String login;
     private String password;
+    private String role;
     @OneToOne(targetEntity = Faculty.class, cascade = CascadeType.ALL)
     private Faculty faculty;
-    @OneToOne(targetEntity = Role.class, cascade = CascadeType.ALL)
-    private Role role;
+    @OneToOne(targetEntity = Professor.class, cascade = CascadeType.ALL)
+    private Professor professor;
 }
