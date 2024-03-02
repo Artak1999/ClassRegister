@@ -13,9 +13,10 @@ public class SignIn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Role role;
     private String login;
     private String password;
     @OneToOne(targetEntity = Faculty.class, cascade = CascadeType.ALL)
     private Faculty faculty;
+    @OneToOne(targetEntity = Role.class, cascade = CascadeType.ALL)
+    private Role role;
 }
